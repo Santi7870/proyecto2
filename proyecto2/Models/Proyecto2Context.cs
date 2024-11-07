@@ -16,6 +16,8 @@ namespace proyecto2.Models
 
         // DbSet para la entidad CarritoItem
         public DbSet<CarritoItem> CarritoItems { get; set; }  // Añadido CarritoItems
+        public DbSet<Compra> Compras { get; set; }  // Asegúrate de que esté aquí
+
     }
 }
 

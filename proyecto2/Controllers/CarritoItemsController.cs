@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using proyecto2.Models;
-using Microsoft.EntityFrameworkCore;  // Necesario para ToListAsync()
+using Microsoft.EntityFrameworkCore;
 
 namespace proyecto2.Controllers
 {
@@ -16,8 +16,8 @@ namespace proyecto2.Controllers
         // GET: CarritoItems
         public async Task<IActionResult> Index()
         {
-            // Devuelve todos los productos del carrito en la base de datos
-            return View(await _context.CarritoItems.ToListAsync());
+            var carritoItems = await _context.CarritoItems.ToListAsync();
+            return View(carritoItems);
         }
 
         // Acción para agregar un producto al carrito
@@ -52,21 +52,42 @@ namespace proyecto2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Acción para comprar todos los productos del carrito
+        // Acción para realizar la compra
+        [HttpPost]
         public IActionResult ComprarTodo()
         {
-            // Obtén todos los productos del carrito
             var carritoItems = _context.CarritoItems.ToList();
 
-            // Aquí se puede agregar lógica para procesar el pago o redirigir al usuario a la página de pago
-            if (carritoItems.Any())
+            if (carritoItems.Count == 0)
             {
-                // Ejemplo: Redirigir a una página de pago (puedes personalizar esta lógica)
-                return RedirectToAction("Pago", "Pago", new { items = carritoItems });
+                // Si no hay productos en el carrito, retornar a la vista con un mensaje de advertencia
+                TempData["Mensaje"] = "Tu carrito está vacío. No puedes realizar la compra.";
+                return RedirectToAction(nameof(Index));
             }
 
-            // Si el carrito está vacío, redirigir a una página opcional
-            return RedirectToAction("Index", "Home");
+            // Crear una nueva compra
+            var compra = new Compra
+            {
+                Usuario = "Usuario Ejemplo", // Asegúrate de obtener el nombre del usuario desde la sesión o autenticación
+                FechaCompra = DateTime.Now,
+                Total = carritoItems.Sum(x => x.Precio * x.Cantidad)
+            };
+
+            // Agregar los items del carrito a la compra
+            compra.CarritoItems = carritoItems;
+
+            // Guardar la compra en la base de datos
+            _context.Compras.Add(compra);
+            _context.SaveChanges();
+
+            // Eliminar los items del carrito después de realizar la compra
+            _context.CarritoItems.RemoveRange(carritoItems);
+            _context.SaveChanges();
+
+            // Mostrar el mensaje de compra exitosa
+            TempData["Mensaje"] = "Compra realizada con éxito.";
+
+            return RedirectToAction(nameof(Index));
         }
 
         private bool CarritoItemExists(int id)
@@ -75,3 +96,5 @@ namespace proyecto2.Controllers
         }
     }
 }
+
+

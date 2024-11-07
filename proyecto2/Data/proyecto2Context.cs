@@ -15,5 +15,6 @@ namespace proyecto2.Data
         }
 
         public DbSet<proyecto2.Models.CarritoItem> CarritoItem { get; set; } = default!;
+        public DbSet<proyecto2.Models.Compra> Compra { get; set; } = default!;
     }
 }
