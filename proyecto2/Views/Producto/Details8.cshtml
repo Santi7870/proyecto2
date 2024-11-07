@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Zapato Deportivo 2";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div class="product-details-container">
+    <div class="row">
+        <!-- Imagen del Producto -->
+        <div class="col-md-6">
+            <img src="https://via.placeholder.com/300x400?text=Zapato+Deportivo+2" alt="Zapato Deportivo 2" class="img-fluid">
+        </div>
+
+        <!-- Detalles del Producto -->
+        <div class="col-md-6">
+            <h3>Zapato Deportivo 2</h3>
+            <p>Estos zapatos deportivos están diseñados para ofrecerte el máximo confort durante tus entrenamientos o actividades deportivas. Con una suela antideslizante y un diseño moderno, son perfectos para quienes buscan comodidad y estilo.</p>
+            <h4>Precio: $65.00</h4>
+            <p><strong>Envío:</strong> Gratis</p>
+
+            <!-- Opciones de Color -->
+            <h5>Colores disponibles:</h5>
+            <select class="form-select" id="color-select">
+                <option value="negro">Negro</option>
+                <option value="rojo">Rojo</option>
+                <option value="blanco">Blanco</option>
+            </select>
+
+            <!-- Opciones de Talla -->
+            <h5>Tallas disponibles:</h5>
+            <select class="form-select" id="size-select">
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+            </select>
+
+            <!-- Botones de acción -->
+            <div class="mt-3">
+                <button class="btn btn-success">Comprar</button>
+                <button class="btn btn-warning">Agregar al carrito</button>
+            </div>
+        </div>
+    </div>
+</div>
+
