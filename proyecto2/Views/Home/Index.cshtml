@@ -1,8 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Bienvenido";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="welcome-container text-center">
+    <h1 class="display-4">¡Bienvenido!</h1>
+    <p>Por favor, elige una opción para continuar:</p>
+    <div class="button-container">
+        <a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg">Iniciar sesión</a>
+        <a href="@Url.Action("Register", "Account")" class="btn btn-secondary btn-lg">Registrarse</a>
+    </div>
 </div>
+

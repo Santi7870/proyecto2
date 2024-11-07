@@ -1,7 +1,7 @@
-﻿namespace proyecto2.Models
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
+namespace proyecto2.Models
+{
     public class Usuario
     {
         public int Id { get; set; }
@@ -30,5 +30,4 @@
         [DataType(DataType.Password)]
         public string Contraseña { get; set; }
     }
-
 }
