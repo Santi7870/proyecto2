@@ -11,7 +11,7 @@ using proyecto2.Models;
 namespace proyecto2.Migrations
 {
     [DbContext(typeof(Proyecto2Context))]
-    [Migration("20241107024919_migracion2")]
+    [Migration("20241107210804_migracion2")]
     partial class migracion2
     {
         /// <inheritdoc />
@@ -23,6 +23,37 @@ namespace proyecto2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("proyecto2.Models.CarritoItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Talla")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CarritoItems");
+                });
 
             modelBuilder.Entity("proyecto2.Models.Usuario", b =>
                 {

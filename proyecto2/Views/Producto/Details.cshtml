@@ -38,7 +38,9 @@
             <!-- Botones de acción -->
             <div class="mt-3">
                 <button class="btn btn-success">Comprar</button>
-                <button class="btn btn-warning">Agregar al carrito</button>
+                <button class="btn btn-warning">
+                    <a href="@Url.Action("AgregarAlCarrito", "CarritoItems", new { nombre = "Hoodie Gris", color = "Gris", talla = "M", precio = 35.00 })" style="color: white; text-decoration: none;">Agregar al carrito</a>
+                </button>
             </div>
         </div>
     </div>
