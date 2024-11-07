@@ -1,64 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using proyecto2.Models;
-using System.Collections.Generic;
-using System.Linq;
 
-public class AccountController : Controller
+namespace proyecto2.Controllers
 {
-    // Lista en memoria de usuarios simulando una base de datos
-    private static List<Usuario> usuarios = new List<Usuario>();
-
-    // Vista de Registro
-    public IActionResult Register()
+    public class AccountController : Controller
     {
-        return View();
-    }
+        private readonly Proyecto2Context _context;
 
-    // Acción de Registro
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Register(Usuario usuario)
-    {
-        if (ModelState.IsValid)
+        public AccountController(Proyecto2Context context)
         {
-            // Simulando la verificación de si el correo ya está registrado
-            if (usuarios.Any(u => u.Email == usuario.Email))
+            _context = context;
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(Usuario usuario)
+        {
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("Email", "El correo electrónico ya está registrado.");
-                return View(usuario);
+                _context.Usuarios.Add(usuario);
+                _context.SaveChanges(); // Asegúrate de que esta línea esté presente para guardar en la base de datos
+                return RedirectToAction("Login");
             }
-
-            // Agregar el nuevo usuario a la lista en memoria
-            usuarios.Add(usuario);
-
-            // Redirigir a la página de login
-            return RedirectToAction("Login");
+            return View(usuario); // Si el modelo no es válido, vuelve a mostrar la vista de registro
         }
 
-        return View(usuario);
-    }
-
-    // Vista de Login
-    public IActionResult Login()
-    {
-        return View();
-    }
-
-    // Acción de Login
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Login(string email, string contraseña)
-    {
-        var usuario = usuarios.FirstOrDefault(u => u.Email == email && u.Contraseña == contraseña);
-
-        if (usuario != null)
+        [HttpGet]
+        public IActionResult Login()
         {
-            // Aquí puedes almacenar el usuario en la sesión si deseas
-            return RedirectToAction("Dashboard"); // Página a la que se redirige después de iniciar sesión
+            return View();
         }
-
-        ModelState.AddModelError(string.Empty, "Credenciales incorrectas.");
-        return View();
     }
 }
+
 
