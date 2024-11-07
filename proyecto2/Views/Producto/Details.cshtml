@@ -38,11 +38,25 @@
             <!-- Botones de acción -->
             <div class="mt-3">
                 <button class="btn btn-success">Comprar</button>
-                <button class="btn btn-warning">
-                    <a href="@Url.Action("AgregarAlCarrito", "CarritoItems", new { nombre = "Hoodie Gris", color = "Gris", talla = "M", precio = 35.00 })" style="color: white; text-decoration: none;">Agregar al carrito</a>
+                <button class="btn btn-warning" onclick="agregarAlCarrito()">
+                    Agregar al carrito
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function agregarAlCarrito() {
+        // Obtener los valores seleccionados
+        const color = document.getElementById("color-select").value;
+        const talla = document.getElementById("size-select").value;
+        const nombre = "Hoodie Clásico";
+        const precio = 30.00;
+
+        // Redirigir al controlador con los valores seleccionados
+        window.location.href = `@Url.Action("AgregarAlCarrito", "CarritoItems")?nombre=${nombre}&color=${color}&talla=${talla}&precio=${precio}`;
+    }
+</script>
+
 

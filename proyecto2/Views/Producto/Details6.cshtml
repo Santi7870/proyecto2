@@ -39,8 +39,24 @@
             <!-- Botones de acción -->
             <div class="mt-3">
                 <button class="btn btn-success">Comprar</button>
-                <button class="btn btn-warning">Agregar al carrito</button>
+                <button class="btn btn-warning" onclick="agregarAlCarrito()">
+                    Agregar al carrito
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function agregarAlCarrito() {
+        // Obtener los valores seleccionados
+        const color = document.getElementById("color-select").value;
+        const talla = document.getElementById("size-select").value;
+        const nombre = "Zapato de Cuero";
+        const precio = 80.00;
+
+        // Redirigir al controlador con los valores seleccionados
+        window.location.href = `@Url.Action("AgregarAlCarrito", "CarritoItems")?nombre=${nombre}&color=${color}&talla=${talla}&precio=${precio}`;
+    }
+</script>
+
