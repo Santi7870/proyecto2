@@ -1,0 +1,38 @@
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Registro de Usuario";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <div>
+        <label for="Nombre">Nombre</label>
+        <input type="text" id="Nombre" name="Nombre" value="@Model?.Nombre" required />
+    </div>
+    <div>
+        <label for="Apellido">Apellido</label>
+        <input type="text" id="Apellido" name="Apellido" value="@Model?.Apellido" required />
+    </div>
+    <div>
+        <label for="Telefono">Teléfono</label>
+        <input type="text" id="Telefono" name="Telefono" value="@Model?.Telefono" required />
+    </div>
+    <div>
+        <label for="Edad">Edad</label>
+        <input type="number" id="Edad" name="Edad" value="@Model?.Edad" required />
+    </div>
+    <div>
+        <label for="Email">Correo Electrónico</label>
+        <input type="email" id="Email" name="Email" value="@Model?.Email" required />
+    </div>
+    <div>
+        <label for="Contraseña">Contraseña</label>
+        <input type="password" id="Contraseña" name="Contraseña" value="@Model?.Contraseña" required />
+    </div>
+    <button type="submit">Registrarse</button>
+</form>
+
+
+
