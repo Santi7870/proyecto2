@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "¡Hola Mundo!";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>¡Bienvenido a la página protegida! Has iniciado sesión correctamente.</p>
+
+<a href="@Url.Action("Logout", "Account")" class="btn btn-danger">Cerrar sesión</a>
+
