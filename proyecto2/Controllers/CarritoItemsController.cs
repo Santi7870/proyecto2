@@ -52,6 +52,23 @@ namespace proyecto2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // Acción para comprar todos los productos del carrito
+        public IActionResult ComprarTodo()
+        {
+            // Obtén todos los productos del carrito
+            var carritoItems = _context.CarritoItems.ToList();
+
+            // Aquí se puede agregar lógica para procesar el pago o redirigir al usuario a la página de pago
+            if (carritoItems.Any())
+            {
+                // Ejemplo: Redirigir a una página de pago (puedes personalizar esta lógica)
+                return RedirectToAction("Pago", "Pago", new { items = carritoItems });
+            }
+
+            // Si el carrito está vacío, redirigir a una página opcional
+            return RedirectToAction("Index", "Home");
+        }
+
         private bool CarritoItemExists(int id)
         {
             return _context.CarritoItems.Any(e => e.Id == id);
