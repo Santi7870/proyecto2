@@ -58,3 +58,9 @@
     .btn-secondary:hover {
         background-color: #5a6268;
     }
+
+.my-5 {
+    margin-top: 200px; /* Aumenta el espacio entre carruseles */
+    margin-bottom: 200px;
+}
+

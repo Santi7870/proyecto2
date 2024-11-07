@@ -1,10 +1,238 @@
 ﻿@{
-    ViewData["Title"] = "¡Hola Mundo!";
+    ViewData["Title"] = "Catálogo de Ropa";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2 class="text-center">@ViewData["Title"]</h2>
 
-<p>¡Bienvenido a la página protegida! Has iniciado sesión correctamente.</p>
+<!-- Carrusel de Hoodies -->
+<div class="carousel-container my-5">
+    <h3>Hoodies</h3>
+    <div id="hoodieCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex justify-content-between">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Hoodie 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Hoodie Clásico</h5>
+                            <p class="card-text">Precio: $30.00</p>
+                            <a href="/producto/hoodie-clasico" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Hoodie 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Hoodie con Logo</h5>
+                            <p class="card-text">Precio: $35.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Hoodie 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Hoodie Gris</h5>
+                            <p class="card-text">Precio: $28.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-between">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Hoodie 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Hoodie Rojo</h5>
+                            <p class="card-text">Precio: $40.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Hoodie 5">
+                        <div class="card-body">
+                            <h5 class="card-title">Hoodie Deportivo</h5>
+                            <p class="card-text">Precio: $50.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Hoodie 6">
+                        <div class="card-body">
+                            <h5 class="card-title">Hoodie de Algodón</h5>
+                            <p class="card-text">Precio: $32.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#hoodieCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hoodieCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
 
-<a href="@Url.Action("Logout", "Account")" class="btn btn-danger">Cerrar sesión</a>
+<!-- Carrusel de Zapatos -->
+<div class="carousel-container my-5">
+    <h3>Zapatos</h3>
+    <div id="shoesCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex justify-content-between">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Zapato 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Zapatos Deportivos</h5>
+                            <p class="card-text">Precio: $45.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Zapato 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Zapatos Casual</h5>
+                            <p class="card-text">Precio: $38.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Zapato 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Zapatos de Cuero</h5>
+                            <p class="card-text">Precio: $55.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-between">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Zapato 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Botines Negros</h5>
+                            <p class="card-text">Precio: $48.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Zapato 5">
+                        <div class="card-body">
+                            <h5 class="card-title">Zapatos Formales</h5>
+                            <p class="card-text">Precio: $65.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Zapato 6">
+                        <div class="card-body">
+                            <h5 class="card-title">Zapatos Deportivos 2</h5>
+                            <p class="card-text">Precio: $50.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#shoesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#shoesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<!-- Carrusel de Camisetas -->
+<div class="carousel-container my-5">
+    <h3>Camisetas</h3>
+    <div id="tshirtCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex justify-content-between">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Camiseta 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Camiseta Básica</h5>
+                            <p class="card-text">Precio: $18.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Camiseta 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Camiseta con Estampado</h5>
+                            <p class="card-text">Precio: $22.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Camiseta 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Camiseta Manga Larga</h5>
+                            <p class="card-text">Precio: $25.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-between">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Camiseta 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Camiseta Deportiva</h5>
+                            <p class="card-text">Precio: $30.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Camiseta 5">
+                        <div class="card-body">
+                            <h5 class="card-title">Camiseta Estilo Retro</h5>
+                            <p class="card-text">Precio: $28.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://via.placeholder.com/150x200" class="card-img-top" alt="Camiseta 6">
+                        <div class="card-body">
+                            <h5 class="card-title">Camiseta con Logo</h5>
+                            <p class="card-text">Precio: $32.00</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#tshirtCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#tshirtCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
