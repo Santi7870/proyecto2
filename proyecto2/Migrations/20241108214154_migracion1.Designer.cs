@@ -12,8 +12,8 @@ using proyecto2.Models;
 namespace proyecto2.Migrations
 {
     [DbContext(typeof(Proyecto2Context))]
-    [Migration("20241108124352_Migracion1")]
-    partial class Migracion1
+    [Migration("20241108214154_migracion1")]
+    partial class migracion1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,9 @@ namespace proyecto2.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CompraId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaCompra")
                         .HasColumnType("datetime2");

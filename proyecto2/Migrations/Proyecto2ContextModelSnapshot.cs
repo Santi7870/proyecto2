@@ -66,6 +66,9 @@ namespace proyecto2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CompraId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("FechaCompra")
                         .HasColumnType("datetime2");
 
