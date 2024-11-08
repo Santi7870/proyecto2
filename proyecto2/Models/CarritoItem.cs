@@ -14,5 +14,7 @@ namespace proyecto2.Models
         public string Talla { get; set; }
         public decimal Precio { get; set; }
         public int Cantidad { get; set; }
+
+
     }
 }
