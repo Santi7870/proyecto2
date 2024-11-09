@@ -11,9 +11,19 @@ namespace proyecto2.Models
         public string Nombre { get; set; }
         public string Color { get; set; }
         public string Talla { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Precio { get; set; }
+
         public int Cantidad { get; set; }
-        public string Usuario { get; set; }  // Nueva propiedad para el nombre del usuario
+        public string Usuario { get; set; }
+
+        [ForeignKey("Compra")]
+        public int? CompraId { get; set; }
+        public Compra Compra { get; set; }
     }
 }
+
+
+
 

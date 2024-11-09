@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using proyecto2.Models;
+using proyecto2.Data;
 
 #nullable disable
 
@@ -70,22 +70,19 @@ namespace proyecto2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompraId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("FechaCompra")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Usuario2")
+                    b.Property<string>("Usuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Compras");
+                    b.ToTable("Compra");
                 });
 
             modelBuilder.Entity("proyecto2.Models.Usuario", b =>
@@ -128,9 +125,11 @@ namespace proyecto2.Migrations
 
             modelBuilder.Entity("proyecto2.Models.CarritoItem", b =>
                 {
-                    b.HasOne("proyecto2.Models.Compra", null)
+                    b.HasOne("proyecto2.Models.Compra", "Compra")
                         .WithMany("CarritoItems")
                         .HasForeignKey("CompraId");
+
+                    b.Navigation("Compra");
                 });
 
             modelBuilder.Entity("proyecto2.Models.Compra", b =>

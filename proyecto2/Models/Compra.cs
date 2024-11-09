@@ -1,5 +1,4 @@
-﻿using proyecto2.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace proyecto2.Models
@@ -9,16 +8,15 @@ namespace proyecto2.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("CompraId")]
-
-        public int CompraId { get; set; }
-        public string Usuario2 { get; set; }
+        public string Usuario { get; set; }
         public DateTime FechaCompra { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Total { get; set; }
 
         // Relación con CarritoItems
-        public List<CarritoItem> CarritoItems { get; set; }  // Relación uno a muchos
+        public List<CarritoItem> CarritoItems { get; set; }
     }
-
 }
+
 

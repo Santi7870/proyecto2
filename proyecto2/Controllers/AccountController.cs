@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using proyecto2.Models;
-using System.Linq;
+using proyecto2.Data;
 
 namespace proyecto2.Controllers
 {
@@ -61,8 +61,6 @@ namespace proyecto2.Controllers
             }
         }
 
-
-
         // Vista "HOLA MUNDO"
         public IActionResult HolaMundo()
         {
@@ -70,6 +68,7 @@ namespace proyecto2.Controllers
         }
     }
 }
+
 
 
 

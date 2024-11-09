@@ -12,19 +12,18 @@ namespace proyecto2.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Compras",
+                name: "Compra",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CompraId = table.Column<int>(type: "int", nullable: false),
-                    Usuario2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FechaCompra = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Compras", x => x.Id);
+                    table.PrimaryKey("PK_Compra", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,9 +62,9 @@ namespace proyecto2.Migrations
                 {
                     table.PrimaryKey("PK_CarritoItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CarritoItems_Compras_CompraId",
+                        name: "FK_CarritoItems_Compra_CompraId",
                         column: x => x.CompraId,
-                        principalTable: "Compras",
+                        principalTable: "Compra",
                         principalColumn: "Id");
                 });
 
@@ -85,7 +84,7 @@ namespace proyecto2.Migrations
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Compras");
+                name: "Compra");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using proyecto2.Models;
+using proyecto2.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace proyecto2.Controllers
@@ -24,12 +25,10 @@ namespace proyecto2.Controllers
         [HttpGet]
         public IActionResult AgregarAlCarrito(string nombre, string color, string talla, decimal precio)
         {
-            // Obtén el nombre del usuario desde la sesión
             var usuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
 
             if (string.IsNullOrEmpty(usuarioNombre))
             {
-                // Maneja el caso donde el usuario no está autenticado
                 TempData["Mensaje"] = "Debes iniciar sesión para agregar productos al carrito.";
                 return RedirectToAction("Login", "Account");
             }
@@ -40,8 +39,8 @@ namespace proyecto2.Controllers
                 Color = color,
                 Talla = talla,
                 Precio = precio,
-                Cantidad = 1,  // Por defecto se agrega una unidad
-                Usuario = usuarioNombre  // Asigna el nombre del usuario
+                Cantidad = 1,
+                Usuario = usuarioNombre
             };
 
             _context.CarritoItems.Add(carritoItem);
@@ -49,7 +48,6 @@ namespace proyecto2.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
 
         // Acción para eliminar un producto del carrito
         public IActionResult EliminarDelCarrito(int id)
@@ -68,7 +66,17 @@ namespace proyecto2.Controllers
         [HttpPost]
         public IActionResult ComprarTodo()
         {
-            var carritoItems = _context.CarritoItems.ToList();
+            var usuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
+
+            if (string.IsNullOrEmpty(usuarioNombre))
+            {
+                TempData["Mensaje"] = "Debes iniciar sesión para realizar una compra.";
+                return RedirectToAction("Login", "Account");
+            }
+
+            var carritoItems = _context.CarritoItems
+                                       .Where(x => x.Usuario == usuarioNombre)
+                                       .ToList();
 
             if (carritoItems.Count == 0)
             {
@@ -76,19 +84,7 @@ namespace proyecto2.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var compra = new Compra
-            {
-                Usuario2 = "Usuario Ejemplo", // Asegúrate de obtener el nombre del usuario desde la sesión o autenticación
-                FechaCompra = DateTime.Now,
-                Total = carritoItems.Sum(x => x.Precio * x.Cantidad),
-                CarritoItems = carritoItems
-            };
-
-            _context.Compras.Add(compra);
-            _context.SaveChanges();
-
-            _context.CarritoItems.RemoveRange(carritoItems);
-            _context.SaveChanges();
+            // Aquí puedes agregar lógica para procesar la compra sin el modelo Compra
 
             TempData["Mensaje"] = "Compra realizada con éxito.";
 
