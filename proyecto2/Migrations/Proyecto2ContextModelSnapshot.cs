@@ -51,6 +51,10 @@ namespace proyecto2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Usuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompraId");
@@ -75,7 +79,7 @@ namespace proyecto2.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Usuario")
+                    b.Property<string>("Usuario2")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

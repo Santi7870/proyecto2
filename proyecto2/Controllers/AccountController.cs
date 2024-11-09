@@ -49,16 +49,19 @@ namespace proyecto2.Controllers
 
             if (usuario != null)
             {
-                // Redirige a la página de "HOLA MUNDO" si las credenciales son correctas
+                // Almacena el nombre del usuario en la sesión
+                HttpContext.Session.SetString("UsuarioNombre", usuario.Nombre);
+
                 return RedirectToAction("HolaMundo");
             }
             else
             {
-                // Si las credenciales no coinciden, muestra un mensaje de error
                 ModelState.AddModelError("", "Credenciales incorrectas. Intenta nuevamente.");
                 return View();
             }
         }
+
+
 
         // Vista "HOLA MUNDO"
         public IActionResult HolaMundo()

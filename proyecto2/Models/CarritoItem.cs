@@ -3,10 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace proyecto2.Models
 {
-    [Table("CarritoItems")]  // Asegúrate de que el nombre de la tabla coincida
+    [Table("CarritoItems")]
     public class CarritoItem
     {
-
         [Key]
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -14,7 +13,7 @@ namespace proyecto2.Models
         public string Talla { get; set; }
         public decimal Precio { get; set; }
         public int Cantidad { get; set; }
-
-
+        public string Usuario { get; set; }  // Nueva propiedad para el nombre del usuario
     }
 }
+

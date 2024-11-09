@@ -12,7 +12,7 @@ namespace proyecto2.Models
         [ForeignKey("CompraId")]
 
         public int CompraId { get; set; }
-        public string Usuario { get; set; }
+        public string Usuario2 { get; set; }
         public DateTime FechaCompra { get; set; }
         public decimal Total { get; set; }
 

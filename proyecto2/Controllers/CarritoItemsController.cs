@@ -24,13 +24,24 @@ namespace proyecto2.Controllers
         [HttpGet]
         public IActionResult AgregarAlCarrito(string nombre, string color, string talla, decimal precio)
         {
+            // Obtén el nombre del usuario desde la sesión
+            var usuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
+
+            if (string.IsNullOrEmpty(usuarioNombre))
+            {
+                // Maneja el caso donde el usuario no está autenticado
+                TempData["Mensaje"] = "Debes iniciar sesión para agregar productos al carrito.";
+                return RedirectToAction("Login", "Account");
+            }
+
             var carritoItem = new CarritoItem
             {
                 Nombre = nombre,
                 Color = color,
                 Talla = talla,
                 Precio = precio,
-                Cantidad = 1  // Por defecto se agrega una unidad
+                Cantidad = 1,  // Por defecto se agrega una unidad
+                Usuario = usuarioNombre  // Asigna el nombre del usuario
             };
 
             _context.CarritoItems.Add(carritoItem);
@@ -38,6 +49,7 @@ namespace proyecto2.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
 
         // Acción para eliminar un producto del carrito
         public IActionResult EliminarDelCarrito(int id)
@@ -60,31 +72,24 @@ namespace proyecto2.Controllers
 
             if (carritoItems.Count == 0)
             {
-                // Si no hay productos en el carrito, retornar a la vista con un mensaje de advertencia
                 TempData["Mensaje"] = "Tu carrito está vacío. No puedes realizar la compra.";
                 return RedirectToAction(nameof(Index));
             }
 
-            // Crear una nueva compra
             var compra = new Compra
             {
-                Usuario = "Usuario Ejemplo", // Asegúrate de obtener el nombre del usuario desde la sesión o autenticación
+                Usuario2 = "Usuario Ejemplo", // Asegúrate de obtener el nombre del usuario desde la sesión o autenticación
                 FechaCompra = DateTime.Now,
-                Total = carritoItems.Sum(x => x.Precio * x.Cantidad)
+                Total = carritoItems.Sum(x => x.Precio * x.Cantidad),
+                CarritoItems = carritoItems
             };
 
-            // Agregar los items del carrito a la compra
-            compra.CarritoItems = carritoItems;
-
-            // Guardar la compra en la base de datos
             _context.Compras.Add(compra);
             _context.SaveChanges();
 
-            // Eliminar los items del carrito después de realizar la compra
             _context.CarritoItems.RemoveRange(carritoItems);
             _context.SaveChanges();
 
-            // Mostrar el mensaje de compra exitosa
             TempData["Mensaje"] = "Compra realizada con éxito.";
 
             return RedirectToAction(nameof(Index));

@@ -12,8 +12,8 @@ using proyecto2.Models;
 namespace proyecto2.Migrations
 {
     [DbContext(typeof(Proyecto2Context))]
-    [Migration("20241108214154_migracion1")]
-    partial class migracion1
+    [Migration("20241109004925_migracion2")]
+    partial class migracion2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,10 @@ namespace proyecto2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Usuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompraId");
@@ -78,7 +82,7 @@ namespace proyecto2.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Usuario")
+                    b.Property<string>("Usuario2")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
