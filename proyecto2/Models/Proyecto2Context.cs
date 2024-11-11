@@ -12,6 +12,8 @@ namespace proyecto2.Data
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<CarritoItem> CarritoItems { get; set; }
+        public DbSet<Compra> Compras { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +27,8 @@ namespace proyecto2.Data
 
             base.OnModelCreating(modelBuilder);
         }
+
+
     }
 }
 

@@ -84,7 +84,7 @@ namespace proyecto2.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            // Aquí puedes agregar lógica para procesar la compra sin el modelo Compra
+            
 
             TempData["Mensaje"] = "Compra realizada con éxito.";
 
@@ -97,5 +97,8 @@ namespace proyecto2.Controllers
         }
     }
 }
+
+
+
 
 

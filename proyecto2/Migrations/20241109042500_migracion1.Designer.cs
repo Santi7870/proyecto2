@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using proyecto2.Data;
 
@@ -11,9 +12,11 @@ using proyecto2.Data;
 namespace proyecto2.Migrations
 {
     [DbContext(typeof(Proyecto2Context))]
-    partial class Proyecto2ContextModelSnapshot : ModelSnapshot
+    [Migration("20241109042500_migracion1")]
+    partial class migracion1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,8 +139,6 @@ namespace proyecto2.Migrations
                 {
                     b.Navigation("CarritoItems");
                 });
-
-
 #pragma warning restore 612, 618
         }
     }

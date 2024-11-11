@@ -43,9 +43,14 @@ else
     </div>
 
     <!-- Botón para comprar todo el carrito -->
-    <div>
-        <a href="@Url.Action("ComprarTodo", "CarritoItems")" class="btn btn-success mt-4">Comprar Todo</a>
+
+    <div class="text-center">
+
+        <button type="button" class="btn btn-success mt-4" onclick="CrearAlerta()">Comprar Todo</button>
+
     </div>
+ 
+
 
     <div>
         <a href="@Url.Action("holamundo", "Account")" class="btn btn-secondary mt-4">Regresar</a>
