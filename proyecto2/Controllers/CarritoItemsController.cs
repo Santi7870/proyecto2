@@ -84,7 +84,7 @@ namespace proyecto2.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            
+
 
             TempData["Mensaje"] = "Compra realizada con éxito.";
 
@@ -97,6 +97,11 @@ namespace proyecto2.Controllers
         }
     }
 }
+
+
+
+
+
 
 
 
