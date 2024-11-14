@@ -12,7 +12,7 @@ using proyecto2.Data;
 namespace proyecto2.Migrations
 {
     [DbContext(typeof(Proyecto2Context))]
-    [Migration("20241114025513_migracion2")]
+    [Migration("20241114033649_migracion2")]
     partial class migracion2
     {
         /// <inheritdoc />
@@ -73,7 +73,7 @@ namespace proyecto2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("FechaCompra")
+                    b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("PrecioTotal")

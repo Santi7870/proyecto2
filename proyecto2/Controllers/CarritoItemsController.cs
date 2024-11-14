@@ -76,47 +76,56 @@ namespace proyecto2.Controllers
 
         // Acción para realizar la compra de todos los productos del carrito
         [HttpPost]
-        public IActionResult ComprarTodo()
+        public IActionResult ComprarTodo(string usuario)
         {
-            var usuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
-
-            if (string.IsNullOrEmpty(usuarioNombre))
+            // Verificar si el usuario está autenticado
+            if (string.IsNullOrEmpty(usuario))
             {
-                TempData["Mensaje"] = "Debes iniciar sesión para realizar una compra.";
                 return RedirectToAction("Login", "Account");
             }
 
-            var carritoItems = _context.CarritoItems
-                                       .Where(x => x.Usuario == usuarioNombre)
-                                       .ToList();
+            // Obtener todos los productos del carrito del usuario
+            var carritoItems = _context.CarritoItems.Where(ci => ci.Usuario == usuario).ToList();
 
-            if (carritoItems.Count == 0)
+            if (!carritoItems.Any())
             {
-                TempData["Mensaje"] = "Tu carrito está vacío. No puedes realizar la compra.";
-                return RedirectToAction(nameof(Index));
+                // Si el carrito está vacío, redirigir a la página del carrito
+                return RedirectToAction("Index", "CarritoItems");
             }
 
-            decimal precioTotal = carritoItems.Sum(x => x.Precio * x.Cantidad);
+            // Calcular el total de la compra (precio total)
+            decimal precioTotal = carritoItems.Sum(ci => ci.Precio * ci.Cantidad);
 
-            // Crear el objeto de compra
+            // Crear la compra
             var compra = new Compra
             {
-                Usuario = usuarioNombre,
+                Usuario = usuario,
                 PrecioTotal = precioTotal,
-                FechaCompra = DateTime.Now
+                Fecha = DateTime.Now
             };
 
             // Guardar la compra en la base de datos
             _context.Compras.Add(compra);
             _context.SaveChanges();
 
-            // Eliminar los productos del carrito después de la compra
+            // Asignar la CompraId a cada item del carrito
+            foreach (var item in carritoItems)
+            {
+                item.CompraId = compra.Id;
+            }
+
+            // Guardar los cambios
+            _context.SaveChanges();
+
+            // Opcional: Limpiar el carrito después de la compra
             _context.CarritoItems.RemoveRange(carritoItems);
             _context.SaveChanges();
 
-            TempData["Mensaje"] = "Compra realizada con éxito.";
-            return RedirectToAction("Index", "Home"); // Redirigir a donde se desee, por ejemplo a la página principal.
+            // Redirigir a la página de confirmación
+            return RedirectToAction("CompraExitosa");
         }
+
+
 
         // Acción para realizar una compra directa (sin agregar al carrito)
         [HttpGet]
@@ -135,7 +144,7 @@ namespace proyecto2.Controllers
             {
                 Usuario = usuarioNombre,
                 PrecioTotal = precio,
-                FechaCompra = DateTime.Now
+                Fecha = DateTime.Now
             };
 
             // Guardar la compra en la base de datos

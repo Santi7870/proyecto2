@@ -13,7 +13,7 @@ namespace proyecto2.Models
         [Column(TypeName = "decimal(18,2)")]
 
         public decimal PrecioTotal { get; set; }  // Precio de la compra
-        public DateTime FechaCompra { get; set; } = DateTime.Now;  // Fecha de la compra
+        public DateTime Fecha { get; set; }  // Asegúrate de que no sea nullable si no quieres permitir nulos
     }
 
 }

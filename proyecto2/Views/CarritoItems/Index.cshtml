@@ -43,19 +43,20 @@ else
     </div>
 
     <!-- Botón para comprar todo el carrito -->
-
     <div class="text-center">
-
-        <button type="button" class="btn btn-success mt-4" onclick="CrearAlerta()">Comprar Todo</button>
-
+        <form method="post" action="@Url.Action("ComprarTodo", "CarritoItems")">
+            <input type="hidden" name="usuario" value="@User.Identity.Name" />
+            <input type="hidden" name="precioTotal" value="@Model.Sum(x => x.Precio * x.Cantidad)" />
+            <button type="submit" class="btn btn-success mt-4">Comprar Todo</button>
+        </form>
     </div>
- 
-
 
     <div>
         <a href="@Url.Action("holamundo", "Account")" class="btn btn-secondary mt-4">Regresar</a>
     </div>
 }
+
+
 
 
 

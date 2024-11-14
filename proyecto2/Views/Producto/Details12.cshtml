@@ -37,7 +37,7 @@
 
             <!-- Botones de acción -->
             <div class="mt-3">
-                <button class="btn btn-success" onclick="CrearAlerta()">Comprar</button>
+                <button class="btn btn-success" onclick="crearAlertaComprar()">Comprar</button>
                 <button class="btn btn-warning" onclick="agregarAlCarrito()">
                     Agregar al carrito
                 </button>
@@ -50,6 +50,34 @@
 </div>
 
 <script>
+    // Función para mostrar la alerta antes de realizar la compra directa
+    function crearAlertaComprar() {
+        var respuesta = confirm("¿Estás seguro de que deseas comprar este producto?");
+
+        if (respuesta) {
+            // Si el usuario confirma, redirigir al controlador para la compra directa
+            comprarDirecto();
+        }
+    }
+
+    // Función para Comprar Directo
+    function comprarDirecto() {
+        // Obtener los valores seleccionados
+        const color = document.getElementById("color-select").value;
+        const talla = document.getElementById("size-select").value;
+        const nombre = "Camiseta con Logo";
+        const precio = 25.00;
+
+        // Redirigir al controlador para compra directa
+        window.location.href = `@Url.Action("ComprarDirecto", "CarritoItems")?nombre=${nombre}&color=${color}&talla=${talla}&precio=${precio}`;
+
+        // Mostrar alerta de compra exitosa
+        setTimeout(function () {
+            alert("¡Compra realizada con éxito!");
+        }, 1000); // Retraso de 1 segundo para mostrar la alerta después de redirigir
+    }
+
+    // Función para Agregar al Carrito
     function agregarAlCarrito() {
         // Obtener los valores seleccionados
         const color = document.getElementById("color-select").value;
@@ -58,7 +86,8 @@
         const precio = 25.00;
 
         // Redirigir al controlador con los valores seleccionados
-        window.location.href = `@Url.Action("AgregarAlCarrito", "CarritoItems")?nombre=${nombre}&color=${color}&talla=${talla}&precio=${precio}`;
+        window.location.href = "@Url.Action("AgregarAlCarrito", "CarritoItems")?nombre=" + nombre + "&color=" + color + "&talla=" + talla + "&precio=" + precio;
     }
 </script>
+
 
