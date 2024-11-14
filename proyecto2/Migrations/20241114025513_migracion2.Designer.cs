@@ -12,8 +12,8 @@ using proyecto2.Data;
 namespace proyecto2.Migrations
 {
     [DbContext(typeof(Proyecto2Context))]
-    [Migration("20241109042500_migracion1")]
-    partial class migracion1
+    [Migration("20241114025513_migracion2")]
+    partial class migracion2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +76,7 @@ namespace proyecto2.Migrations
                     b.Property<DateTime>("FechaCompra")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Total")
+                    b.Property<decimal>("PrecioTotal")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Usuario")
@@ -85,7 +85,7 @@ namespace proyecto2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Compra");
+                    b.ToTable("Compras");
                 });
 
             modelBuilder.Entity("proyecto2.Models.Usuario", b =>
@@ -129,15 +129,10 @@ namespace proyecto2.Migrations
             modelBuilder.Entity("proyecto2.Models.CarritoItem", b =>
                 {
                     b.HasOne("proyecto2.Models.Compra", "Compra")
-                        .WithMany("CarritoItems")
+                        .WithMany()
                         .HasForeignKey("CompraId");
 
                     b.Navigation("Compra");
-                });
-
-            modelBuilder.Entity("proyecto2.Models.Compra", b =>
-                {
-                    b.Navigation("CarritoItems");
                 });
 #pragma warning restore 612, 618
         }

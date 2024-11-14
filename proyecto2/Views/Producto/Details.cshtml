@@ -1,65 +1,81 @@
-﻿    @{
-        ViewData["Title"] = "Hoodie Clásico";
-    }
+﻿@{
+    ViewData["Title"] = "Hoodie Clásico";
+}
 
-    <h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center">@ViewData["Title"]</h2>
 
-    <div class="product-details-container">
-        <div class="row">
-            <!-- Imagen del Producto -->
-            <div class="col-md-6">
-                <img src="https://grizzlycolombia.com/cdn/shop/files/Hoodie_clasico_Grizzly_Gris_Azul_petroleo.jpg?v=1715119237&width=1445" alt="Hoodie Clásico" class="img-fluid" width="500" height="500">
+<div class="product-details-container">
+    <div class="row">
+        <!-- Imagen del Producto -->
+        <div class="col-md-6">
+            <img src="https://grizzlycolombia.com/cdn/shop/files/Hoodie_clasico_Grizzly_Gris_Azul_petroleo.jpg?v=1715119237&width=1445" alt="Hoodie Clásico" class="img-fluid" width="500" height="500">
+        </div>
+
+        <!-- Detalles del Producto -->
+        <div class="col-md-6">
+            <h3>Hoodie Clásico</h3>
+            <p>Este es un hoodie clásico, perfecto para el clima fresco y para el día a día. Hecho de algodón 100% de alta calidad.</p>
+            <h4>Precio: $30.00</h4>
+            <p><strong>Envío:</strong> Gratis</p>
+
+            <!-- Opciones de Color -->
+            <h5>Colores disponibles:</h5>
+            <select class="form-select" id="color-select">
+                <option value="rojo">Rojo</option>
+                <option value="azul">Azul</option>
+                <option value="gris">Gris</option>
+            </select>
+
+            <!-- Opciones de Talla -->
+            <h5>Tallas disponibles:</h5>
+            <select class="form-select" id="size-select">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+
+            <!-- Botones de acción -->
+            <div class="mt-3">
+                <!-- Botón Comprar Directo -->
+                <button class="btn btn-success" onclick="comprarDirecto()">Comprar</button>
+
+                <!-- Botón Agregar al Carrito -->
+                <button class="btn btn-warning" onclick="agregarAlCarrito()">
+                    Agregar al carrito
+                </button>
             </div>
-
-            <!-- Detalles del Producto -->
-            <div class="col-md-6">
-                <h3>Hoodie Clásico</h3>
-                <p>Este es un hoodie clásico, perfecto para el clima fresco y para el día a día. Hecho de algodón 100% de alta calidad.</p>
-                <h4>Precio: $30.00</h4>
-                <p><strong>Envío:</strong> Gratis</p>
-
-                <!-- Opciones de Color -->
-                <h5>Colores disponibles:</h5>
-                <select class="form-select" id="color-select">
-                    <option value="rojo">Rojo</option>
-                    <option value="azul">Azul</option>
-                    <option value="gris">Gris</option>
-                </select>
-
-                <!-- Opciones de Talla -->
-                <h5>Tallas disponibles:</h5>
-                <select class="form-select" id="size-select">
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                </select>
-
-                <!-- Botones de acción -->
-                <div class="mt-3">
-                    <button class="btn btn-success" onclick="CrearAlerta()">Comprar</button>
-                    <button class="btn btn-warning" onclick="agregarAlCarrito()">
-                        Agregar al carrito
-                    </button>
-                </div>
-                <div>
-                    <a href="@Url.Action("holamundo", "Account")" class="btn btn-secondary mt-4">Regresar</a>
-                </div>
+            <div>
+                <a href="@Url.Action("holamundo", "Account")" class="btn btn-secondary mt-4">Regresar</a>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        function agregarAlCarrito() {
-            // Obtener los valores seleccionados
-            const color = document.getElementById("color-select").value;
-            const talla = document.getElementById("size-select").value;
-            const nombre = "Hoodie Clásico";
-            const precio = 30.00;
+<script>
+    // Función para Comprar Directo
+    function comprarDirecto() {
+        // Obtener los valores seleccionados
+        const color = document.getElementById("color-select").value;
+        const talla = document.getElementById("size-select").value;
+        const nombre = "Hoodie Clásico";
+        const precio = 30.00;
 
-            // Redirigir al controlador con los valores seleccionados
-            window.location.href = `@Url.Action("AgregarAlCarrito", "CarritoItems")?nombre=${nombre}&color=${color}&talla=${talla}&precio=${precio}`;
-        }
-    </script>
+        // Redirigir al controlador para compra directa
+        window.location.href = `@Url.Action("ComprarDirecto", "CarritoItems")?nombre=${nombre}&color=${color}&talla=${talla}&precio=${precio}`;
+    }
+
+    // Función para Agregar al Carrito
+    function agregarAlCarrito() {
+        // Obtener los valores seleccionados
+        const color = document.getElementById("color-select").value;
+        const talla = document.getElementById("size-select").value;
+        const nombre = "Hoodie Clásico";
+        const precio = 30.00;
+
+        // Redirigir al controlador con los valores seleccionados
+        window.location.href = "@Url.Action("AgregarAlCarrito", "CarritoItems")?nombre=" + nombre + "&color=" + color + "&talla=" + talla + "&precio=" + precio;
+    }
+</script>
 
 

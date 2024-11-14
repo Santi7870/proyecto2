@@ -22,7 +22,7 @@ namespace proyecto2.Data
                 .HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<Compra>()
-                .Property(c => c.Total)
+                .Property(c => c.PrecioTotal)
                 .HasColumnType("decimal(18,2)");
 
             base.OnModelCreating(modelBuilder);
