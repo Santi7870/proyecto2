@@ -73,6 +73,10 @@ namespace proyecto2.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("NombreProducto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("PrecioTotal")
                         .HasColumnType("decimal(18,2)");
 

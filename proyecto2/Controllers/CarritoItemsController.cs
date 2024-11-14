@@ -143,6 +143,7 @@ namespace proyecto2.Controllers
             var compra = new Compra
             {
                 Usuario = usuarioNombre,
+                NombreProducto = nombre,
                 PrecioTotal = precio,
                 Fecha = DateTime.Now
             };

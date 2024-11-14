@@ -10,6 +10,8 @@ namespace proyecto2.Models
         public int Id { get; set; }
         public string Usuario { get; set; }  // Nombre del usuario
 
+        public string NombreProducto { get; set; }
+
         [Column(TypeName = "decimal(18,2)")]
 
         public decimal PrecioTotal { get; set; }  // Precio de la compra

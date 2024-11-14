@@ -18,6 +18,7 @@ namespace proyecto2.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Usuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NombreProducto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PrecioTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

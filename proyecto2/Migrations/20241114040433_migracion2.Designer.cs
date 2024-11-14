@@ -12,7 +12,7 @@ using proyecto2.Data;
 namespace proyecto2.Migrations
 {
     [DbContext(typeof(Proyecto2Context))]
-    [Migration("20241114033649_migracion2")]
+    [Migration("20241114040433_migracion2")]
     partial class migracion2
     {
         /// <inheritdoc />
@@ -75,6 +75,10 @@ namespace proyecto2.Migrations
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("NombreProducto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PrecioTotal")
                         .HasColumnType("decimal(18,2)");
