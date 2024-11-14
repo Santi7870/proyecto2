@@ -143,7 +143,7 @@ namespace proyecto2.Controllers
             _context.SaveChanges();
 
             TempData["Mensaje"] = "Compra realizada con éxito.";
-            return RedirectToAction("Index", "Home"); // Redirigir a donde se desee, por ejemplo a la página principal.
+            return RedirectToAction("HolaMundo", "Account"); // Redirigir a donde se desee, por ejemplo a la página principal.
         }
 
         // Verificar si el producto existe en el carrito

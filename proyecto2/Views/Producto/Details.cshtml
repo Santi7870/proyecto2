@@ -37,14 +37,13 @@
 
             <!-- Botones de acción -->
             <div class="mt-3">
-                <!-- Botón Comprar Directo -->
-                <button class="btn btn-success" onclick="comprarDirecto()">Comprar</button>
+                <!-- Botón Comprar con Alerta -->
+                <button class="btn btn-success" onclick="crearAlertaComprar()">Comprar</button>
 
                 <!-- Botón Agregar al Carrito -->
-                <button class="btn btn-warning" onclick="agregarAlCarrito()">
-                    Agregar al carrito
-                </button>
+                <button class="btn btn-warning" onclick="agregarAlCarrito()">Agregar al carrito</button>
             </div>
+
             <div>
                 <a href="@Url.Action("holamundo", "Account")" class="btn btn-secondary mt-4">Regresar</a>
             </div>
@@ -53,6 +52,8 @@
 </div>
 
 <script>
+    // Función para mostrar la alerta antes de realizar la compra directa
+
     // Función para Comprar Directo
     function comprarDirecto() {
         // Obtener los valores seleccionados
@@ -63,6 +64,11 @@
 
         // Redirigir al controlador para compra directa
         window.location.href = `@Url.Action("ComprarDirecto", "CarritoItems")?nombre=${nombre}&color=${color}&talla=${talla}&precio=${precio}`;
+
+        // Mostrar alerta de compra exitosa
+        setTimeout(function () {
+            alert("¡Compra realizada con éxito!");
+        }, 1000); // Retraso de 1 segundo para mostrar la alerta después de redirigir
     }
 
     // Función para Agregar al Carrito
@@ -77,5 +83,7 @@
         window.location.href = "@Url.Action("AgregarAlCarrito", "CarritoItems")?nombre=" + nombre + "&color=" + color + "&talla=" + talla + "&precio=" + precio;
     }
 </script>
+
+
 
 

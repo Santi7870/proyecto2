@@ -9,3 +9,14 @@ function CrearAlerta() {
 
 
 }
+function crearAlertaComprar() {
+    var respuesta = confirm("¿Estás seguro de que deseas comprar este producto?");
+
+    if (respuesta) {
+        // Si el usuario confirma, redirigir al controlador para la compra directa
+        comprarDirecto();
+    }
+}
+
+
+
