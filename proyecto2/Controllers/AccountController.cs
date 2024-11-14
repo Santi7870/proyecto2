@@ -13,14 +13,12 @@ namespace proyecto2.Controllers
             _context = context;
         }
 
-        // Vista de registro
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
-        // Método POST de registro
         [HttpPost]
         public IActionResult Register(Usuario usuario)
         {
@@ -33,14 +31,12 @@ namespace proyecto2.Controllers
             return View(usuario);
         }
 
-        // Vista de inicio de sesión
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        // Método POST de inicio de sesión
         [HttpPost]
         public IActionResult Login(string email, string contraseña)
         {
@@ -49,7 +45,6 @@ namespace proyecto2.Controllers
 
             if (usuario != null)
             {
-                // Almacena el nombre del usuario en la sesión
                 HttpContext.Session.SetString("UsuarioNombre", usuario.Nombre);
 
                 return RedirectToAction("HolaMundo");
@@ -61,7 +56,6 @@ namespace proyecto2.Controllers
             }
         }
 
-        // Vista "HOLA MUNDO"
         public IActionResult HolaMundo()
         {
             return View();

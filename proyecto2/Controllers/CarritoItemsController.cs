@@ -15,7 +15,6 @@ namespace proyecto2.Controllers
             _context = context;
         }
 
-        // GET: CarritoItems (Vista de carrito de compras)
         public async Task<IActionResult> Index()
         {
             var usuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
@@ -32,7 +31,6 @@ namespace proyecto2.Controllers
             return View(carritoItems);
         }
 
-        // Acción para agregar un producto al carrito
         [HttpGet]
         public IActionResult AgregarAlCarrito(string nombre, string color, string talla, decimal precio)
         {
@@ -61,7 +59,6 @@ namespace proyecto2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Acción para eliminar un producto del carrito
         public IActionResult EliminarDelCarrito(int id)
         {
             var item = _context.CarritoItems.FirstOrDefault(x => x.Id == id);
@@ -74,29 +71,23 @@ namespace proyecto2.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Acción para realizar la compra de todos los productos del carrito
         [HttpPost]
         public IActionResult ComprarTodo(string usuario)
         {
-            // Verificar si el usuario está autenticado
             if (string.IsNullOrEmpty(usuario))
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("HolaMundo", "Account");
             }
 
-            // Obtener todos los productos del carrito del usuario
             var carritoItems = _context.CarritoItems.Where(ci => ci.Usuario == usuario).ToList();
 
             if (!carritoItems.Any())
             {
-                // Si el carrito está vacío, redirigir a la página del carrito
                 return RedirectToAction("Index", "CarritoItems");
             }
 
-            // Calcular el total de la compra (precio total)
             decimal precioTotal = carritoItems.Sum(ci => ci.Precio * ci.Cantidad);
 
-            // Crear la compra
             var compra = new Compra
             {
                 Usuario = usuario,
@@ -104,30 +95,24 @@ namespace proyecto2.Controllers
                 Fecha = DateTime.Now
             };
 
-            // Guardar la compra en la base de datos
             _context.Compras.Add(compra);
             _context.SaveChanges();
 
-            // Asignar la CompraId a cada item del carrito
             foreach (var item in carritoItems)
             {
                 item.CompraId = compra.Id;
             }
 
-            // Guardar los cambios
             _context.SaveChanges();
 
-            // Opcional: Limpiar el carrito después de la compra
             _context.CarritoItems.RemoveRange(carritoItems);
             _context.SaveChanges();
 
-            // Redirigir a la página de confirmación
             return RedirectToAction("CompraExitosa");
         }
 
 
 
-        // Acción para realizar una compra directa (sin agregar al carrito)
         [HttpGet]
         public IActionResult ComprarDirecto(string nombre, string color, string talla, decimal precio)
         {
@@ -139,7 +124,6 @@ namespace proyecto2.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            // Crear el objeto de compra
             var compra = new Compra
             {
                 Usuario = usuarioNombre,
@@ -148,15 +132,13 @@ namespace proyecto2.Controllers
                 Fecha = DateTime.Now
             };
 
-            // Guardar la compra en la base de datos
             _context.Compras.Add(compra);
             _context.SaveChanges();
 
             TempData["Mensaje"] = "Compra realizada con éxito.";
-            return RedirectToAction("HolaMundo", "Account"); // Redirigir a donde se desee, por ejemplo a la página principal.
+            return RedirectToAction("HolaMundo", "Account"); 
         }
 
-        // Verificar si el producto existe en el carrito
         private bool CarritoItemExists(int id)
         {
             return _context.CarritoItems.Any(e => e.Id == id);

@@ -42,7 +42,7 @@ else
         <h4>Total: @Model.Sum(x => x.Precio * x.Cantidad)</h4>
     </div>
 
-    <!-- Botón para comprar todo el carrito -->
+
     <div class="text-center">
         <form method="post" action="@Url.Action("ComprarTodo", "CarritoItems")">
             <input type="hidden" name="usuario" value="@User.Identity.Name" />
