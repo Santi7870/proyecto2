@@ -1,0 +1,25 @@
+﻿@model IEnumerable<proyecto2.Models.Product>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
