@@ -9,6 +9,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>UserFirstName</th>
+            <th>UserLastName</th>
+
             <th>Nombre</th>
             <th>Descripción</th>
         </tr>
@@ -17,6 +20,10 @@
         @foreach (var product in Model)
         {
             <tr>
+                <td>@product.UserFirstName</td>
+
+                <td>@product.UserLastName</td>
+
                 <td>@product.Name</td>
                 <td>@product.Description</td>
             </tr>
